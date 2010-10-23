@@ -1,0 +1,1 @@
+<script type="text/javascript" src="combine_js.php?version=<?php require('combine_js.php'); ?>"></script>

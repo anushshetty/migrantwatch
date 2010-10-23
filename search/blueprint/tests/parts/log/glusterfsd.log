@@ -1,0 +1,39 @@
+2008-07-04 19:56:38 W [glusterfs.c:415:glusterfs_cleanup_and_exit] glusterfs: shutting down server
+2008-07-10 16:19:39 C [tcp-server.c:222:gf_transport_init] server: failed to bind to socket on port 6998, error: Address already in use
+2008-07-10 16:19:39 E [transport.c:116:transport_load] transport: 'tcp/server' initialization failed
+2008-07-10 16:19:39 E [server-protocol.c:6310:init] server: failed to load transport
+2008-07-10 16:19:39 E [glusterfs.c:554:main] glusterfs: Initializing graph failed
+2008-07-10 16:22:02 C [tcp-server.c:222:gf_transport_init] server: failed to bind to socket on port 6998, error: Address already in use
+2008-07-10 16:22:02 E [transport.c:116:transport_load] transport: 'tcp/server' initialization failed
+2008-07-10 16:22:02 E [server-protocol.c:6310:init] server: failed to load transport
+2008-07-10 16:22:02 E [glusterfs.c:554:main] glusterfs: Initializing graph failed
+2008-07-10 16:25:29 C [tcp-server.c:222:gf_transport_init] server: failed to bind to socket on port 6998, error: Address already in use
+2008-07-10 16:25:29 E [transport.c:116:transport_load] transport: 'tcp/server' initialization failed
+2008-07-10 16:25:29 E [server-protocol.c:6310:init] server: failed to load transport
+2008-07-10 16:25:29 E [glusterfs.c:554:main] glusterfs: Initializing graph failed
+2008-07-10 16:29:30 C [tcp-server.c:222:gf_transport_init] server: failed to bind to socket on port 6998, error: Address already in use
+2008-07-10 16:29:30 E [transport.c:116:transport_load] transport: 'tcp/server' initialization failed
+2008-07-10 16:29:30 E [server-protocol.c:6310:init] server: failed to load transport
+2008-07-10 16:29:30 E [glusterfs.c:554:main] glusterfs: Initializing graph failed
+2008-07-10 16:32:18 C [tcp-server.c:222:gf_transport_init] server: failed to bind to socket on port 6998, error: Address already in use
+2008-07-10 16:32:18 E [transport.c:116:transport_load] transport: 'tcp/server' initialization failed
+2008-07-10 16:32:18 E [server-protocol.c:6310:init] server: failed to load transport
+2008-07-10 16:32:18 E [glusterfs.c:554:main] glusterfs: Initializing graph failed
+2008-07-10 16:36:51 W [glusterfs.c:415:glusterfs_cleanup_and_exit] glusterfs: shutting down server
+2008-07-10 19:54:09 E [xlator.c:120:xlator_set_type] xlator: dlopen(/lib/glusterfs/1.3.9/xlator/storage/posix.so): /lib/glusterfs/1.3.9/xlator/storage/posix.so: cannot open shared object file: No such file or directory
+2008-07-10 19:54:09 E [spec.y:123:section_type] parser: failed to set the node type
+2008-07-10 19:54:09 E [spec.y:232:file_to_xlator_tree] parser: yyparser () exited with YYABORT
+2008-07-10 19:54:09 E [glusterfs.c:189:xlator_graph_get] glusterfs: specification file parsing failed, exiting
+2008-07-10 19:54:09 E [glusterfs.c:537:main] glusterfs: Unable to get xlator graph
+2008-07-24 14:51:05 C [tcp-server.c:222:gf_transport_init] server: failed to bind to socket on port 6996, error: Address already in use
+2008-07-24 14:51:05 E [transport.c:116:transport_load] transport: 'tcp/server' initialization failed
+2008-07-24 14:51:05 E [server-protocol.c:6310:init] server: failed to load transport
+2008-07-24 14:51:05 E [glusterfs.c:554:main] glusterfs: Initializing graph failed
+2008-07-24 15:11:49 C [tcp-server.c:222:gf_transport_init] server: failed to bind to socket on port 6996, error: Address already in use
+2008-07-24 15:11:49 E [transport.c:116:transport_load] transport: 'tcp/server' initialization failed
+2008-07-24 15:11:49 E [server-protocol.c:6310:init] server: failed to load transport
+2008-07-24 15:11:49 E [glusterfs.c:554:main] glusterfs: Initializing graph failed
+2008-07-24 15:12:28 W [glusterfs.c:415:glusterfs_cleanup_and_exit] glusterfs: shutting down server
+2008-07-24 15:35:39 C [unify.c:4164:init] unify: WARNING: You have defined only one "subvolumes" for unify volume. It may not be the desired config, review your volume spec file. If this is how you are testing it, you may hit some performance penalty
+2008-07-24 17:20:33 W [glusterfs.c:415:glusterfs_cleanup_and_exit] glusterfs: shutting down server
+2008-07-24 17:20:33 W [glusterfs.c:415:glusterfs_cleanup_and_exit] glusterfs: shutting down server

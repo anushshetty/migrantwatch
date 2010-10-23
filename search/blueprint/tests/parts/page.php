@@ -1,0 +1,88 @@
+<html>
+<head>
+ <link rel="STYLESHEET" type="text/css" href="style.css">
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="fisheye/interface.js"></script>
+<link type="text/css" href="fisheye/interface-fisheye.css" rel="stylesheet">
+
+<script type="text/javascript">
+
+$(document).ready(
+function()
+{
+$('#fisheye').Fisheye(
+{
+maxWidth: 50,
+items: 'a',
+itemsText: 'span',
+container: '.fisheyeContainter',
+itemWidth: 70,
+proximity: 90,
+halign : 'center'
+}
+)
+
+}
+);
+
+</script>
+
+</head><body>
+  <div class="txt">
+		<table width=20% align=left bgcolor="#ffffff" style="style="margin-top:2%; border: 1px solid #C3D9FF;">
+ 			<tr>
+                                <td align="center">
+                                <img src="gluster.png" width=70%>
+                                </td>
+
+        
+		        </tr>
+		</table>
+
+		<table width=20% align=left bgcolor="#ffffff" style="style="margin-top:2%; border: 1px solid #C3D9FF;">
+ 			<tr>
+                                <td align="center" colspan="2" bgcolor="#C3D9FF" >
+                                <b>Navigation</b>
+                                </td>
+                        </tr>
+
+                     <tr><td><div class="txt"><a href="#">Login</a></div></td></tr>
+                     <tr><td><div class="txt"><a href="#">Help</a></div></td></tr>
+                     
+		</table></div>
+
+<table width=50% align=center bgcolor="#ffffff" style="margin-top:2%; border: 1px solid #C3D9FF;"> 
+<tr>
+	<td align="center" colspan="2" bgcolor="#C3D9FF" >
+	<h2>Control Panel</h2>
+	</td>
+        
+</tr>
+<tr height=250px>
+	<td>
+	<div class="txt" valign="center">
+		<div id="fisheye" class="fisheye">
+		     <div class="fisheyeContainter">
+		     	  <a href="#" class="fisheyeItem" ><img src="volume/volume.png" width="30" /><span>Volume</span></a>
+			  <a href="#" class="fisheyeItem" ><img src="performance/per.png" width="30" /><span>Performance</span></a>
+			  <a href="#" class="fisheyeItem"><img src="log/log.png" width="30" /><span>Log</span></a>
+			  <a href="#" class="fisheyeItem"><img src="start/start.png" width="30" /><span>Start/Stop</span></a>
+	             </div>
+	      
+	</div> 
+  	</div> 
+	</td>
+
+	<td>
+		
+		
+	</td>
+</tr>
+
+</table> 
+
+</body>
+	
+<?
+/* include("footer.php"); */
+?>

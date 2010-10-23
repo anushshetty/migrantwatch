@@ -1,0 +1,25 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+ "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+   <title>Anush Shetty</title>
+   <link rel="stylesheet" href="http://yui.yahooapis.com/2.5.1/build/reset-fonts-grids/reset-fonts-grids.css" type="text/css">
+</head>
+<body>
+<div id="doc4" class="yui-t6">
+   <div id="hd" style="width:100%;"><h1>Anush Shetty</h1></div>
+   <div id="bd">
+	<div id="yui-main">
+	<div class="yui-b"><div class="yui-g">
+	Welcome
+	</div>
+</div>
+	</div>
+	<div class="yui-b"><!-- YOUR NAVIGATION GOES HERE --></div>
+	
+	</div>
+   <div id="ft">Copyright: Anush Shetty</div>
+</div>
+</body>
+</html>
+

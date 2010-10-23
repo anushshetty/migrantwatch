@@ -1,0 +1,48 @@
+<? session_start();
+include("db.php");
+include("functions.php");
+$photo_id = $_GET['id'];
+
+
+$sql = "select comment_id,comment_time, comment_text,user_id from migwatch_photo_comments where photo_id='$photo_id'";
+$result = mysql_query($sql);
+
+$page =  "<table class='all_comments'>";
+while ( $data = mysql_fetch_array($result) ) {
+$c_time  = $data['comment_time'];
+$c_id = $data['comment_id'];
+
+if( $data['user_id'] == $_SESSION['userid'] ) { $del_button = "<a title='Click here to delete this comment' href='#x' class='del_comment_link' id='". $data['comment_id'] . "'>delete</a>"; } else { $del_button = ''; }
+      
+      if( $data['user_id'] == $_SESSION['userid'] ) { $username = "You"; } else { $username = getUserNameById($data['user_id'],$connect); }
+      	  $page .= "<tr><td id='cline_" . $c_id . "'><div class='photo_comments'><b>" . $username . "</b>: " . $data['comment_text'] . "<br><small><i>" . date('g:i a F j, Y ', strtotime($c_time)) . "</i>   " . $del_button . "</small></div></td></tr>";
+      
+
+}
+$page .= "</table>";
+
+echo $page;
+?>
+<script>
+$(".del_comment_link").click(function() {
+     var del_com_pid = $(this).attr("id");
+     var data = 'id=' + encodeURIComponent(del_com_pid);
+     jConfirm('Are you sure you want ot delete this sighting ?', '',function(r) {
+         if(r==true) {                   
+            $.ajax({
+                url: "deletecomment.php",
+                     type: "GET",
+		     data: data,
+                     cache: false,
+		     success: function (html) {
+				 $('#cline_' + del_com_pid).fadeOut("slow");
+                                 $('#ncom').html(html);
+                     }
+            });
+	   
+	  }
+                                        
+       });
+                                
+});
+</script>

@@ -1,0 +1,90 @@
+<? 
+   session_start(); 
+   $page_title="MigrantWatch: Tracking bird migration across India";
+   include("main_includes.php");
+?>
+<body>
+<? 
+      
+	include("header.php");
+  	include("map-box.php"); 
+?>
+<!-- END OF HEADER -->
+<div class='container first_image'>
+     <div class='cms page_layout' style='padding-top:10px'><?php 
+     	  $page=mw_get_page(475); 
+	  echo "<h3>" . $page[0] . "</h3>";
+          echo nl2br($page[1]);
+     ?></div>
+     <div class='page_layout'>
+     <div><hr></div>
+	<div class="map-show-link" style="margin-top:-10px;">
+     	  	<a href="#" id="map-show-hide">latest&nbsp;sightings&nbsp;<span style='color:#d95c15'>(+)</span></a></div>
+     	<div id="map" style="margin-left:8px;"></div>
+	<ul id="list" style=""></ul>
+	<div id="message"></div>
+     </div>
+	<table class='page_layout'>
+       	       <tr><td colspan="2"><hr></td>
+       	       <tr><td class="cms" style="border-right:solid 1px #d95c15;width:45%">
+	       <h3>migrantwatch blog</h3>
+<?
+   $mw_blog = get_latest_blog();
+
+  echo "<ul>";
+   for($i=0; $i < count($mw_blog['title']); $i++) {
+
+        echo "<li><a href='http://migrantwatch.in/blog/?p=" . $mw_blog['id'][$i] . "'>" . $mw_blog['title'][$i] . "</a></li>";
+    }
+    echo "</ul>";
+
+?>
+		</td><td class="cms" style="width:45%;padding-left:15px">
+<?
+		$page = mw_get_page('478');
+         	echo "<h3>" . $page[0] . "</h3>";
+        	 echo nl2br($page[1]);
+?>
+		</td></tr>
+        	<tr><td colspan="2"><hr></td></tr>
+		<tr><td class="cms" colspan="2">
+<?
+		$page = mw_get_page('472'); 
+	 	echo "<h3>" . $page[0] . "</h3>";
+	 	echo nl2br($page[1]);
+?>
+		</td></tr>
+	</table>
+<script type="text/javascript">
+
+$(document).ready(function() {
+ $('#map').hide();
+ $('#list').hide();
+ var toggled = false; 
+ $('#map-show-hide').click(function() { 
+   $('#map').toggle();
+   $('#list').toggle();
+   
+   if( toggled==false ) { $('#map-show-hide').html("latest&nbsp;sightings&nbsp;<span style='color:#d95c15'>(-)</span>"); toggled = true; } else {
+        $('#map-show-hide').html("latest&nbsp;sightings&nbsp;<span style='color:#d95c15'>(+)</span>");
+	toggled = false;
+   }
+
+
+ });
+ $('.error_top').corner();
+ 
+});
+</script>
+<? include("credits.php"); ?>
+</div>
+</div>
+</div>
+<div class="container bottom">
+</div>
+<?php 
+   include("login_includes.php");
+   include("footer.php");
+?>
+</body>
+</html>

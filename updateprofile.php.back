@@ -1,0 +1,236 @@
+<? 	include("auth.php");
+	$user_id = $_SESSION['userid'];
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>MigrantWatch: Update profile information</title>
+</head>
+<body>
+
+<?
+include("header.php"); 
+
+if(isset($_SESSION['userid'])){
+		$sql = "SELECT username, user_name, user_email, address, address1, address2, city, district, state_id, country, pincode FROM migwatch_users WHERE user_id=".$_SESSION['userid'];
+		$result = mysql_query($sql);
+				if($result){
+					while ($row = mysql_fetch_array($result, MYSQL_ASSOC)){
+					        $username_a = $row{'username'};
+						$user_name = $row{'user_name'};
+						$user_email = $row{'user_email'};
+						$address = $row{'address'};
+						$address1 = $row{'address1'};
+						$address2 = $row{'address2'};
+						$city = $row{'city'};
+						$district = $row{'district'};
+						$state_id = $row{'state_id'};
+						$country = $row{'country'};
+						$pincode = $row{'pincode'};
+					}
+				}
+				$sql = "select state from migwatch_states where state_id='$state_id'";
+				$result = mysql_query($sql);
+				$state=mysql_fetch_assoc($result);
+	}
+?>
+<div class="container first_image">
+         <div id='tab-set'>   
+             <ul class='tabs'>
+                 <li><a href='#x' class='selected'>edit&nbsp;profile</a></li>
+             </ul>
+         </div>
+	<table class='page_layout'>
+	<tr><td style='vertical-align-top'>
+		<FORM id="changepass" name=changepass action=userlogin.php method=POST>
+		<table class="editpro" id="change_password_form" style='width:500px;margin-left:auto;margin-right:auto'>
+		<tr><td colspan="2" style="text-align:left"><a id='updatepass'><h4 style='font-weight:bold'>Change&nbsp;password</a></h4></td></tr>
+                <tr>
+                        <td>Current password</td>
+                        <td><input type="password" name="current_pass" autocomplete="off" maxlength=100></td>
+                </tr>
+                <tr>
+                        <td>New password</td>
+                        <td><input type="password" name="new_pass" autocomplete="off" maxlength=100></td>
+                </tr>
+                <tr>
+                        <td>New password (repeat)</td>
+                        <td><input type="password" name="new_pass2" autocomplete="off" maxlength=100></td>
+                </tr>
+		<tr><td colspan="2" style="text-align:center"><input type="submit" value="Change password" name="change_pass"></td></tr>
+		</table>
+	</form>
+	</td></tr>
+	<tr>
+		<td style='vertical-align:top'>
+		<FORM id="editprofile" name=frm_profile action=process_details.php method=POST>
+	        <table class='edit_profile' id="edit_personal_form">
+		<tr><td colspan=2><span class='subtitle'>Update personal information</span>&nbsp;<a href='#x' id='hide_profile_box' title='Close'>(X)</a></td></tr>		
+		<tr>
+			<td><b>Name</b><br><input type=text name=fullname  value="<?php print htmlentities($user_name); ?>" size=28 name=location maxlength=200></td>
+			<td></td><td></td>
+		<tr>
+				<td><b>Address (Line 1)</b><br>
+				<input type=text size=28 name=location maxlength=200 value="<?php print htmlentities($address); ?>"></td>
+
+				<td><b>Address (Line 2)</b><br>
+				<input type=text size=28 name=location1 maxlength=200 value="<?php print htmlentities($address1); ?>"></td>
+
+				<td><b>Address (Line 3)</b><br>
+				<input type=text size=28 name=location2 maxlength=200 value="<?php print htmlentities($address2); ?>"></td>
+		</tr>
+		<tr>
+			<td><b>City/Town/Village</b><br>
+			<input type=text size=28 name=city maxlength=100 value="<?php print htmlentities($city); ?>"></td>
+				
+			<td><b>District</b><br>
+			<input type=text size=28 name=dist maxlength=50 value="<?php print htmlentities($district); ?>"></td>
+		
+			<td><b>State/Union Territory</b><br><SELECT name=state>
+			<?php
+			$result = mysql_query("SELECT state_id, state FROM migwatch_states ORDER BY state");
+			if($result){
+				while ($row = mysql_fetch_array($result, MYSQL_ASSOC)){
+					if($row['state'] != 'Not In India') {
+						print "<option value=".$row{'state_id'};
+						if ($row{'state_id'} == $state_id)
+							print " selected ";
+						print ">".$row{'state'}."</option>\n";
+					} else {
+						$other_id = $row['state_id'];
+						$other = $row['state'];
+					}
+				}
+				print("<option value=".$other_id);
+				if($other_id == $state_id)
+					print " selected ";
+				print ">".$other."</option>\n";
+			}
+			?>
+			</select></td>
+		</tr>
+		<tr><td align=right><b>Country</b><br>
+						<input type=text name=country size=28 value="<?php print($country); ?>" />
+					</td>
+				
+				<td><b>Post code (PIN code)</b><br><input type=text name=pin size=28 value="<?php print($pincode); ?>"/>
+					</td>
+		</tr>
+		<tr>
+			<td>
+				
+				<input type=submit value= "Save" onclick="javascript:return validate();">
+				
+				<input type=hidden name="cmd" value="editprofile" />
+			
+			</td>
+		</tr>
+	</table>
+	</form>	
+</div>
+
+</div>
+</div>
+
+<div class="container bottom">
+
+</div>
+<script>
+$("#editprofile").validate({
+                rules: {
+                       fullname: "required",
+                       email: {
+                              required: true,
+                              email: true
+                        },
+                        pwd: {
+                             required: true,
+                             minlength: 6
+                        },
+                        pwd1: {
+                              required: true,
+                              minlength: 6,
+                              equalTo: "#pwd"
+			},
+                        location: {
+                              required: true
+			},
+			city: {
+                              required: true
+                        },
+                        dist: {
+                              required: true
+                        },
+                        state: {
+                              required: true
+                        },
+                        country: {
+                              required: true
+                        },
+                        pin: {
+                              required: true
+                        },
+
+                },
+		messages: {
+                        fullname: "<br><div class='errorv'>enter your full name</div>",
+                        email: {
+                               required: "<br><div class='errorv'>please enter a valid email address</div>",
+                               minlength: "<br><div class='errorv'>please enter a valid email address</div>",
+                        },
+                        pwd: {
+                               required: "<br>please provide a password",
+                               rangelength: jQuery.format("<br>enter at least {0} characters")
+                        },
+                        pwd1: {
+                              required: "<br>please repeat your password",
+                              minlength: jQuery.format("<br>enter at least {0} characters"),
+                              equalTo: "<br>enter the same password as above"
+                        },
+			location: "<br><div class='errorv'>please enter a mailing address</div>",
+                        city: "<br><div class='errorv'>please enter a city</div>",
+                        dist: "<br><div class='errorv'>please enter a district</div>",
+                        state: "<br><div class='errorv'>please enter a state</div>",
+                        country: "<br><div class='errorv'>please enter a country</div>",
+                        pin: "<br><div class='errorv'>please enter a pincode</div>",
+              }
+});
+
+});
+function update_surl(url,id) {
+   $('#surl-' + id).attr({'href': 'data.php?' + url});
+   $('#sedit-' + id).attr({'href': 'editwatchlist.php?id='+ id + '&' + url + '&TB_iframe=true&width=600&height=400'});
+   
+}
+
+</script>
+<script>
+$(".delete_species").click(function() {
+     var new_com_pid = $(this).attr("id");
+     var data = 'type=species&id=' + encodeURIComponent(new_com_pid);
+     jConfirm('Are you sure you want ot delete this sighting ?', '',function(r) {
+         if(r==true) {
+
+              $.ajax({
+                url: "deletewatchlist.php",
+                     type: "GET",
+                     data: data,
+                     cache: false,
+                     success: function (html) {
+
+                          $('#row_' + new_com_pid).fadeOut("slow");
+                     }
+             });
+
+
+            }
+});
+
+</script>
+
+<? include("footer.php"); ?>
+<script src="combine_js.php?version=<?php require('combine_js.php'); ?>" type="text/javascript"></script>
+</body>
+</html>
